@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import Book from '../../components/book/Book'
 import { getBooks } from '../../services/books'
 
@@ -16,13 +17,20 @@ function BookList() {
   if (loading) return <h1>Loading books...</h1>
 
   return (
-    <ul className="book-list" aria-label="book list">
-      {books.map((book) => (
-        <li key={book.book_id}>
-          <Book book={book} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Library Catalog</h1>
+      <Link to="/">Back to Homepage</Link>
+      <ul className="book-list" aria-label="book list">
+        {books.map((book) => (
+          <li key={book.book_id}>
+            <Link to={`/books/${book.book_id}`}>
+              {' '}
+              <Book book={book} />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
