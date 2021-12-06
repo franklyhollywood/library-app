@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Book from '../../components/book/Book'
 import { getBookById } from '../../services/books'
 
 function BookDetail() {
-  const id = 1 // TODO: Use id from route
+  const { booksId } = useParams() // TODO: Use id from route
   const [book, setBook] = useState(null)
+  const id = booksId
 
   useEffect(() => {
     getBookById(id).then(({ data }) => setBook(data))
@@ -16,8 +17,12 @@ function BookDetail() {
   return (
     <>
       <Book book={book} showDetail />
-      <Link to="BookList" />
-      <p>Book Detail: {bookId}</p>
+
+      <p>Book Detail: {id}</p>
+
+      <Link className="link" to="/Books">
+        Link!
+      </Link>
     </>
   )
 }

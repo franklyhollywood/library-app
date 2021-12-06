@@ -10,5 +10,6 @@ export async function getBooks(query) {
 }
 
 export async function getBookById(id) {
+  console.log(id)
   return client.from('books').select(`*, authors (*)`).match({ book_id: id }).single()
 }
