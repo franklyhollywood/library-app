@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import Book from '../../components/book/Book'
 import { getBookById } from '../../services/books'
 
@@ -12,7 +13,13 @@ function BookDetail() {
 
   if (!book) return <h3>Loading book...</h3>
 
-  return <Book book={book} showDetail />
+  return (
+    <>
+      <Book book={book} showDetail />
+      <Link to="BookList" />
+      <p>Book Detail: {bookId}</p>
+    </>
+  )
 }
 
 export default BookDetail
